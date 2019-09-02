@@ -51,6 +51,8 @@ public class PhotosFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         photosRecyclerView.setLayoutManager(linearLayoutManager);
 
+        progressBar = view.findViewById(R.id.fragment_photos_processbar);
+
         photosAdatper = new PhotosAdatper(getActivity(), photos);
         photosRecyclerView.setAdapter(photosAdatper);
         showProgressBar(true);
