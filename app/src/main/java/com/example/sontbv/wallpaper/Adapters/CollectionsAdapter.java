@@ -64,7 +64,7 @@ public class CollectionsAdapter extends BaseAdapter {
         Collection collection = (Collection) collections.get(i);
 
         if(collection.getTitle() != null){
-            Log.d("Title", collection.getTitle());
+            Log.e("Title", collection.getTitle());
             holder.title.setText(collection.getTitle());
 
         }

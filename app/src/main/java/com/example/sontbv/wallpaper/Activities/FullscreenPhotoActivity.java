@@ -82,7 +82,7 @@ public class FullscreenPhotoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Photo> call, Response<Photo> response) {
                 if(response.isSuccessful()){
-                    Log.d(TAG, "success");
+                    Log.e(TAG, "success");
                     photo = response.body();
                     updateUI(photo);
                 }else{

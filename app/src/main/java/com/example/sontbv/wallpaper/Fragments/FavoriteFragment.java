@@ -46,7 +46,7 @@ public class FavoriteFragment extends Fragment {
         photosRecyclerView.setLayoutManager(linearLayoutManager);
         photosAdatper = new PhotosAdatper(getActivity(), photos);
         photosRecyclerView.setAdapter(photosAdatper);
-        Log.d("Favorite", "Favorite");
+        Log.e("Favorite", "Favorite");
         getPhotos();
         return view;
     }

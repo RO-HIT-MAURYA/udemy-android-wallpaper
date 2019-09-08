@@ -67,22 +67,22 @@ public class PhotosFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Photo>> call, Response<List<Photo>> response) {
                 if(response.isSuccessful()){
-                    Log.d(TAG, "Loading successfully, size: " + response.body().size());
+                    Log.e(TAG, "Loading successfully, size: " + response.body().size());
                     for(Photo photo: response.body()){
                         photos.add(photo);
-                        Log.d(TAG, photo.getUrl().getFull());
+                        Log.e(TAG, photo.getUrl().getFull());
                     }
                     photosAdatper.notifyDataSetChanged();
 
                 }else{
-                    Log.d(TAG, "Fail" + response.message());
+                    Log.e(TAG, "Fail" + response.message());
                 }
                 showProgressBar(false);
             }
 
             @Override
             public void onFailure(Call<List<Photo>> call, Throwable t) {
-                Log.d(TAG, "Fail: " + t.getMessage());
+                Log.e(TAG, "Fail: " + t.getMessage());
                 showProgressBar(false);
             }
         });

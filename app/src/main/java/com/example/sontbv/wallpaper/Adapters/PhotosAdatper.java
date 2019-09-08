@@ -55,7 +55,7 @@ public class PhotosAdatper extends RecyclerView.Adapter<PhotosAdatper.ViewHolder
 
         @OnClick(R.id.item_photo_layout)
         public void handleOnClick(){
-            Log.d(TAG, "dmmmmmmmmm");
+            Log.e(TAG, "dmmmmmmmmm");
             int position = getAdapterPosition();
             String photoId = photos.get(position).getId();
             Intent intent = new Intent(context, FullscreenPhotoActivity.class);

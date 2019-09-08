@@ -74,7 +74,7 @@ public class CollectionsFragment extends Fragment {
     @OnItemClick(R.id.fragment_collections_gridview)
     public void onItemClick(int position){
         Collection collection = collections.get(position);
-        Log.d(TAG, collection.getId() + "");
+        Log.e(TAG, collection.getId() + "");
         Bundle bundle = new Bundle();
         bundle.putInt("collectionId", collection.getId());
         CollectionFragment collectionFragment = new CollectionFragment();
@@ -93,16 +93,16 @@ public class CollectionsFragment extends Fragment {
                         collections.add(collection);
                     }
                     adapter.notifyDataSetChanged();
-                    Log.d(TAG, "size " + collections.size());
+                    Log.e(TAG, "size " + collections.size());
                 }else{
-                    Log.d(TAG, "fail " + response.message());
+                    Log.e(TAG, "fail " + response.message());
                 }
                 showProgressBar(false);
             }
 
             @Override
             public void onFailure(Call<List<Collection>> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+                Log.e(TAG, t.getMessage());
                 showProgressBar(false);
             }
         });
