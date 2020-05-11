@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +16,8 @@ import android.view.Display;
 
 import com.example.sontbv.wallpaper.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -36,19 +40,35 @@ public class Functions {
                 .commit();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean setWallpaper(Activity activity, Bitmap bitmap){
 //        DisplayMetrics metrics = new DisplayMetrics();
 //        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 //        int height = metrics.heightPixels;
 //        int width = metrics.widthPixels;
 //        Bitmap tempBitmap = scaleCenterCrop(bitmap, height, width);
-        WallpaperManager wallpaperManager = WallpaperManager.getInstance(activity);
+
+        //following is for both
+        /*WallpaperManager wallpaperManager = WallpaperManager.getInstance(activity);
         try {
             wallpaperManager.setBitmap(bitmap);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+        byte[] bitmapdata = bos.toByteArray();
+        ByteArrayInputStream bs = new ByteArrayInputStream(bitmapdata);
+
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(activity);
+        try {
+            wallpaperManager.setStream(bs,null,true,WallpaperManager.FLAG_SYSTEM);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return false;
     }
 
